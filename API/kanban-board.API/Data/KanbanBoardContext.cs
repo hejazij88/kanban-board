@@ -1,11 +1,11 @@
 ﻿using kanban_board.API.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace kanban_board.API.Data;
 
-public class KanbanBoardContext : IdentityDbContext<ApplicationUser>
+public class KanbanBoardContext : IdentityDbContext<ApplicationUser,IdentityRole<int>,int>
 {
   
 
@@ -30,8 +30,8 @@ public class KanbanBoardContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Board>(entity =>
         {
             entity.HasOne(b => b.User)
-                .WithMany()
-                .HasForeignKey(b => b.CreteBy)
+                .WithMany(u=>u.Boards)
+                .HasForeignKey(b => b.CreteByUser)
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
@@ -51,7 +51,7 @@ public class KanbanBoardContext : IdentityDbContext<ApplicationUser>
             entity.HasOne(m => m.Group)
                 .WithMany(g => g.Members)
                 .HasForeignKey(m => m.GroupId)
-                .OnDelete(DeleteBehavior.SetNull); // اگر گروه حذف شد، عضویت‌ها باقی بماند یا نال شود
+                .OnDelete(DeleteBehavior.NoAction); 
         });
 
         // --- KanbanList Configuration ---

@@ -7,6 +7,6 @@ public class Board:BaseEntity
     public List<Member> Members { get; set; }
     public List<KanbanList> KanbanList { get; set; }
 
-    public int CreteBy { get; set; }
+    public int CreteByUser { get; set; }
     public virtual ApplicationUser User { get; set; }
 }

@@ -2,9 +2,8 @@
 
 namespace kanban_board.API.Models;
 
-public class ApplicationUser:IdentityUser
+public class ApplicationUser:IdentityUser<int>
 {
-    public int Id { get; set; }
     public virtual ICollection<TaskBoard> TaskBoards { get; set; }
     public virtual ICollection<Board> Boards { get; set; }
 

@@ -1,4 +1,6 @@
 using kanban_board.API.Data;
+using kanban_board.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<KanbanBoardContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+    {
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 4;
+    })
+    .AddEntityFrameworkStores<KanbanBoardContext>()
+    .AddDefaultTokenProviders();
 
 
 builder.Services.AddControllers();
