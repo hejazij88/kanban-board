@@ -2,10 +2,10 @@
 
 public class Member:BaseEntity
 {
-    public Board Board { get; set; }
+    public virtual Board Board { get; set; }
     public int BoardId { get; set; }
-    public ApplicationUser ApplicationUser { get; set; }
+    public virtual ApplicationUser ApplicationUser { get; set; }
     public int UserId { get; set; }
-    public ChatGroup Group { get; set; }
+    public virtual ChatGroup Group { get; set; }
     public int GroupId { get; set; }
 }

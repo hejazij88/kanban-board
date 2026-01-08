@@ -3,8 +3,8 @@
 public class KanbanList:BaseEntity
 {
     public string Title { get; set; }
-    public List<Task> Tasks { get; set; }
+    public ICollection<TaskBoard> Tasks { get; set; }
 
-    public Board Board { get; set; }
+    public virtual Board Board { get; set; }
     public int BoardId { get; set; }
 }

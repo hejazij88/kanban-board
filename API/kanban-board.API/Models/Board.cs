@@ -8,5 +8,5 @@ public class Board:BaseEntity
     public List<KanbanList> KanbanList { get; set; }
 
     public int CreteBy { get; set; }
-    public ApplicationUser User { get; set; }
+    public virtual ApplicationUser User { get; set; }
 }
