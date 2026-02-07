@@ -2,4 +2,5 @@
   <Project Path="API/kanban-board.API/kanban-board.API.csproj" />
   <Project Path="Application/Kabnab-Board.Application/Kabnab-Board.Application.csproj" Id="145f42ec-79e7-4f64-82d7-2597404d4e21" />
   <Project Path="Domain/Kanban-Board.Domain/Kanban-Board.Domain.csproj" Id="b1f3867b-d58b-4afd-b1b6-6f78ae0b4833" />
+  <Project Path="Infrastructure/Kanban-Board.Infrastructure/Kanban-Board.Infrastructure.csproj" Id="067f3424-b9e8-4dc9-aeb6-a95c78247633" />
 </Solution>
