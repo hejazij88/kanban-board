@@ -1,6 +1,6 @@
 using System.Text;
-using kanban_board.API.Data;
-using kanban_board.API.Models;
+using Kanban_Board.Domain.Models;
+using Kanban_Board.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
