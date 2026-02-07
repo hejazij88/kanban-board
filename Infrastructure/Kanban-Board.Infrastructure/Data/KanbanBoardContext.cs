@@ -1,11 +1,11 @@
-﻿using kanban_board.API.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Kanban_Board.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace kanban_board.API.Data;
+namespace Kanban_Board.Infrastructure.Data;
 
-public class KanbanBoardContext : IdentityDbContext<ApplicationUser,IdentityRole<int>,int>
+public class KanbanBoardContext : IdentityDbContext
 {
   
 
@@ -14,6 +14,8 @@ public class KanbanBoardContext : IdentityDbContext<ApplicationUser,IdentityRole
     public DbSet<Member> Members { get; set; }
     public DbSet<Board> Boards { get; set; }
     public DbSet<ChatGroup> ChatGroups { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
     public DbSet<ChatMessage> ChatMessages { get; set; }
 
 
