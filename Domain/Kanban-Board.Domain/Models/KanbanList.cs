@@ -1,4 +1,4 @@
-﻿namespace kanban_board.API.Models;
+﻿namespace Kanban_Board.Domain.Models;
 
 public class KanbanList:BaseEntity
 {
