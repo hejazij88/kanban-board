@@ -15,13 +15,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<KanbanBoardContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
-    {
-        options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 4;
-    })
-    .AddEntityFrameworkStores<KanbanBoardContext>()
-    .AddDefaultTokenProviders();
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+//    {
+//        options.Password.RequireDigit = false;
+//        options.Password.RequiredLength = 4;
+//    })
+//    .AddEntityFrameworkStores<KanbanBoardContext>()
+//    .AddDefaultTokenProviders();
 
 
 builder.Services.AddAuthentication(options => {

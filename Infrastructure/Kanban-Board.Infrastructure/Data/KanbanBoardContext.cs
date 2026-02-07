@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kanban_Board.Infrastructure.Data;
 
-public class KanbanBoardContext : IdentityDbContext
+public class KanbanBoardContext : DbContext
 {
   
 
