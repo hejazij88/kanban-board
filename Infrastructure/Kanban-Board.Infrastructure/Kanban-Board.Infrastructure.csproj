@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\Domain\Kanban-Board.Domain\Kanban-Board.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
