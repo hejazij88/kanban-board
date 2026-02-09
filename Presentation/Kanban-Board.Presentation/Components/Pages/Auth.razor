@@ -1,11 +1,11 @@
 ﻿@page "/auth"
-
+@rendermode InteractiveServer
 <MudContainer MaxWidth="MaxWidth.Small" Class="mt-16">
     <MudPaper Elevation="25" Class="pa-8" Style="border-radius: 16px; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);">
         <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" Centered="true" Color="Color.Primary">
             
             @* --- Login Section --- *@
-            <MudTabPanel Text="Login">
+            <MudTabPanel ID='"login"' Text="Login">
                 <MudForm @ref="loginForm" @bind-IsValid="@isLoginValid">
                     <div class="d-flex flex-column gap-y-4 pt-6">
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Welcome Back</MudText>
@@ -35,22 +35,22 @@
             </MudTabPanel>
 
             @* --- Register Section --- *@
-            <MudTabPanel Text="Register">
+            <MudTabPanel Text="Register" ID='"register"'>
                 <MudForm @ref="registerForm" @bind-IsValid="@isRegisterValid">
                     <div class="d-flex flex-column gap-y-4 pt-6">
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Create Account</MudText>
 
                         <MudTextField T="string" Label="Full Name" Variant="Variant.Outlined" 
-                                      @bind-Value="regName" Required="true" 
+                                      @bind-Value="registerDTO.UserName" Required="true" 
                                       Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Person" />
 
                         <MudTextField T="string" Label="Email" Variant="Variant.Outlined" 
-                                      @bind-Value="regEmail" Required="true" 
+                                      @bind-Value="registerDTO.Email" Required="true"
                                       InputType="InputType.Email" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Email" />
 
                         <MudTextField T="string" Label="Password" Variant="Variant.Outlined" 
-                                      @bind-Value="regPassword" Required="true" 
+                                      @bind-Value="registerDTO.Password" Required="true"
                                       InputType="InputType.Password" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Lock" />
 
@@ -75,25 +75,3 @@
         </div>
     </MudPaper>
 </MudContainer>
-
-@code {
-    bool isLoginValid;
-    MudForm loginForm;
-    string loginEmail, loginPassword;
-
-    bool isRegisterValid;
-    MudForm registerForm;
-    string regName, regEmail, regPassword;
-
-    private async Task OnLoginClick()
-    {
-        await loginForm.Validate();
-        if (isLoginValid) { /* اجرای عملیات لاگین */ }
-    }
-
-    private async Task OnRegisterClick()
-    {
-        await registerForm.Validate();
-        if (isRegisterValid) { /* اجرای عملیات ثبت‌نام */ }
-    }
-}

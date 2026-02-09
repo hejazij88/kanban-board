@@ -13,4 +13,8 @@
     <PackageReference Include="MudBlazor" Version="8.15.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Kabnab-Board.Application\Kabnab-Board.Application.csproj" />
+  </ItemGroup>
+
 </Project>
