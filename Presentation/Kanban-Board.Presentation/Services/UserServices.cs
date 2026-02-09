@@ -1,4 +1,5 @@
 ﻿using Kabnab_Board.Application.DTOs;
+using System.Net;
 
 namespace Kanban_Board.Presentation.Services;
 
@@ -15,6 +16,13 @@ public class UserServices
     {
         var response = await _httpClient.PostAsJsonAsync("api/User/LoadUser", registerDto);
 
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = await response.Content.ReadFromJsonAsync<bool>();
 
+            return true;
+        }
+
+        return false;
     }
 }
