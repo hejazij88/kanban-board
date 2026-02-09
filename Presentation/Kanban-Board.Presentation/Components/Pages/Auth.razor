@@ -41,16 +41,16 @@
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Create Account</MudText>
 
                         <MudTextField T="string" Label="Full Name" Variant="Variant.Outlined" 
-                                      @bind-Value="regName" Required="true" 
+                                      @bind-Value="registerDTO.UserName" Required="true" 
                                       Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Person" />
 
                         <MudTextField T="string" Label="Email" Variant="Variant.Outlined" 
-                                      @bind-Value="regEmail" Required="true" 
+                                      @bind-Value="registerDTO.Email" Required="true"
                                       InputType="InputType.Email" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Email" />
 
                         <MudTextField T="string" Label="Password" Variant="Variant.Outlined" 
-                                      @bind-Value="regPassword" Required="true" 
+                                      @bind-Value="registerDTO.Password" Required="true"
                                       InputType="InputType.Password" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Lock" />
 
@@ -75,25 +75,3 @@
         </div>
     </MudPaper>
 </MudContainer>
-
-@code {
-    bool isLoginValid;
-    MudForm loginForm;
-    string loginEmail, loginPassword;
-
-    bool isRegisterValid;
-    MudForm registerForm;
-    string regName, regEmail, regPassword;
-
-    private async Task OnLoginClick()
-    {
-        await loginForm.Validate();
-        if (isLoginValid) { /* اجرای عملیات لاگین */ }
-    }
-
-    private async Task OnRegisterClick()
-    {
-        await registerForm.Validate();
-        if (isRegisterValid) { /* اجرای عملیات ثبت‌نام */ }
-    }
-}
