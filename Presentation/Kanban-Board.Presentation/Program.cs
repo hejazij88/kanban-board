@@ -1,13 +1,21 @@
 using Kanban_Board.Presentation.Components;
+using Kanban_Board.Presentation.Services;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration["BaseUrl:Url"]) });
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+
+builder.Services.AddScoped<UserServices>();
 builder.Services.AddMudServices();
+
 
 var app = builder.Build();
 

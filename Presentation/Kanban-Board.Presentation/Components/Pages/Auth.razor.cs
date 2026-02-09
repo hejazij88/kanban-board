@@ -1,10 +1,15 @@
 ﻿using Kabnab_Board.Application.DTOs;
+using Kanban_Board.Presentation.Services;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
 namespace Kanban_Board.Presentation.Components.Pages;
 
 public partial class Auth
 {
+    [Inject] private  UserServices _userServices { get; set; }
+    [Inject] private ISnackbar _snackbar { get; set; }
+    [Inject] private NavigationManager _navigationManager { get; set; }
     private bool isLoginValid;
     private MudForm loginForm;
     private string loginEmail;
@@ -27,7 +32,14 @@ public partial class Auth
         await registerForm.Validate();
         if (isRegisterValid)
         {
-            /* اجرای عملیات ثبت‌نام */
+             var result=await _userServices.RegisterUser(registerDTO);
+             if (result == true)
+             {
+                 _snackbar.Add("Register Success", Severity.Success);
+                 _navigationManager.NavigateTo("/Auth");
+             }
+             _snackbar.Add("Register Failed", Severity.Error);
+
         }
     }
 }
