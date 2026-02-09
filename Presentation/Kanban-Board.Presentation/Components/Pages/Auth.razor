@@ -1,11 +1,11 @@
 ﻿@page "/auth"
-
+@rendermode InteractiveServer
 <MudContainer MaxWidth="MaxWidth.Small" Class="mt-16">
     <MudPaper Elevation="25" Class="pa-8" Style="border-radius: 16px; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);">
         <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" Centered="true" Color="Color.Primary">
             
             @* --- Login Section --- *@
-            <MudTabPanel Text="Login">
+            <MudTabPanel ID='"login"' Text="Login">
                 <MudForm @ref="loginForm" @bind-IsValid="@isLoginValid">
                     <div class="d-flex flex-column gap-y-4 pt-6">
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Welcome Back</MudText>
@@ -35,7 +35,7 @@
             </MudTabPanel>
 
             @* --- Register Section --- *@
-            <MudTabPanel Text="Register">
+            <MudTabPanel Text="Register" ID='"register"'>
                 <MudForm @ref="registerForm" @bind-IsValid="@isRegisterValid">
                     <div class="d-flex flex-column gap-y-4 pt-6">
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Create Account</MudText>
