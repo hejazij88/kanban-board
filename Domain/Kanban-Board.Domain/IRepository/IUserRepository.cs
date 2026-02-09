@@ -1,6 +1,8 @@
-﻿namespace Kanban_Board.Domain.IRepository;
+﻿using Kanban_Board.Domain.Models;
+
+namespace Kanban_Board.Domain.IRepository;
 
 public interface IUserRepository
 {
-    public bool RegisterUser();
+    public void RegisterUser(ApplicationUser applicationUser);
 }
