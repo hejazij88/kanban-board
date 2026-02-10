@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kanban_Board.Infrastructure.Data;
 
-public class KanbanBoardContext : DbContext
+public class KanbanBoardContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
 {
   
 
@@ -14,7 +14,6 @@ public class KanbanBoardContext : DbContext
     public DbSet<Member> Members { get; set; }
     public DbSet<Board> Boards { get; set; }
     public DbSet<ChatGroup> ChatGroups { get; set; }
-    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
     public DbSet<ChatMessage> ChatMessages { get; set; }
 
