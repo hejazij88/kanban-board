@@ -14,7 +14,7 @@ public class UserServices
 
     public async Task<bool> RegisterUser(RegisterDTO registerDto)
     {
-        var response = await _httpClient.PostAsJsonAsync("api/User/LoadUser", registerDto);
+        var response = await _httpClient.PostAsJsonAsync("api/User/RegisterUser", registerDto);
 
         if (response.StatusCode == HttpStatusCode.OK)
         {

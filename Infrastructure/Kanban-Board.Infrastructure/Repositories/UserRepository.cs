@@ -1,6 +1,7 @@
 ﻿using Kanban_Board.Domain.IRepository;
 using Kanban_Board.Domain.Models;
 using Kanban_Board.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kanban_Board.Infrastructure.Repositories;
 
@@ -13,8 +14,14 @@ public class UserRepository:RepositoryBase<ApplicationUser>,IUserRepository
 
     }
 
-    public void RegisterUser(ApplicationUser applicationUser)
+    public async void RegisterUser(ApplicationUser applicationUser)
     {
-        _context.ApplicationUsers.Add(applicationUser);
+       await _context.ApplicationUsers.AddAsync(applicationUser);
+    }
+
+    public async Task<ApplicationUser> FindUser(string userName)
+    {
+     var user =await  _context.ApplicationUsers.FirstOrDefaultAsync(u=>u.FirstName==userName);
+     return user??new ();
     }
 }
