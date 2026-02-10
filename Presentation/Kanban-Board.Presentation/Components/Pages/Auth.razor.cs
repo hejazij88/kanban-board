@@ -14,7 +14,7 @@ public partial class Auth
     private MudForm loginForm;
     private bool isRegisterValid;
     private MudForm registerForm;
-    private LogInDTO logInDTO = new LogInDTO();
+    private LoginDTO logInDTO = new LoginDTO();
     private RegisterDTO registerDTO = new RegisterDTO();
 
     private async Task OnLoginClick()

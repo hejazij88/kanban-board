@@ -26,7 +26,7 @@ public class UserServices
         return false;
     }
 
-    public async Task<bool> LoginUser(LogInDTO logInDto)
+    public async Task<bool> LoginUser(LoginDTO logInDto)
     {
         var response = await _httpClient.PostAsJsonAsync("api/User/LoginUser", logInDto);
 

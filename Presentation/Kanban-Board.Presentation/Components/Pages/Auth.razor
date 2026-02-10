@@ -11,7 +11,7 @@
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Welcome Back</MudText>
                         
                         <MudTextField T="string" Label="Email" Variant="Variant.Outlined" 
-                                      @bind-Value="logInDTO.UserName" Required="true" 
+                                      @bind-Value="logInDTO.Email" Required="true" 
                                       InputType="InputType.Email" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Email" />
 
@@ -41,7 +41,7 @@
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Create Account</MudText>
 
                         <MudTextField T="string" Label="Full Name" Variant="Variant.Outlined" 
-                                      @bind-Value="registerDTO.UserName" Required="true" 
+                                      @bind-Value="registerDTO.Fullname" Required="true" 
                                       Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Person" />
 
                         <MudTextField T="string" Label="Email" Variant="Variant.Outlined" 
