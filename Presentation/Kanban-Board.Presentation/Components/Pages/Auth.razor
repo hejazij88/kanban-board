@@ -11,12 +11,12 @@
                         <MudText Typo="Typo.h4" Align="Align.Center" Class="fw-bold mb-4">Welcome Back</MudText>
                         
                         <MudTextField T="string" Label="Email" Variant="Variant.Outlined" 
-                                      @bind-Value="loginEmail" Required="true" 
+                                      @bind-Value="logInDTO.UserName" Required="true" 
                                       InputType="InputType.Email" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Email" />
 
                         <MudTextField T="string" Label="Password" Variant="Variant.Outlined" 
-                                      @bind-Value="loginPassword" Required="true" 
+                                      @bind-Value="logInDTO.Password" Required="true" 
                                       InputType="InputType.Password" Adornment="Adornment.Start" 
                                       AdornmentIcon="@Icons.Material.Filled.Lock" />
 

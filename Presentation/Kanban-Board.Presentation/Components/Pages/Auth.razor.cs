@@ -12,10 +12,9 @@ public partial class Auth
     [Inject] private NavigationManager _navigationManager { get; set; }
     private bool isLoginValid;
     private MudForm loginForm;
-    private string loginEmail;
-    private string loginPassword;
     private bool isRegisterValid;
     private MudForm registerForm;
+    private LogInDTO logInDTO = new LogInDTO();
     private RegisterDTO registerDTO = new RegisterDTO();
 
     private async Task OnLoginClick()
