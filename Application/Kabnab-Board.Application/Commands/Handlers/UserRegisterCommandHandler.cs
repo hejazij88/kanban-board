@@ -25,6 +25,7 @@ public class UserRegisterCommandHandler:IRequestHandler<UserRegisterCommand ,boo
             };
 
             _userRepository.RegisterUser(user);
+            _userRepository.SaveChange();
 
             return true;
         }
