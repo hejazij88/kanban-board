@@ -25,4 +25,18 @@ public class UserServices
 
         return false;
     }
+
+    public async Task<bool> LoginUser(LogInDTO logInDto)
+    {
+        var response = await _httpClient.PostAsJsonAsync("api/User/LoginUser", logInDto);
+
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = await response.Content.ReadFromJsonAsync<string>();
+            //Save Token In LocalStoreg
+            return true;
+        }
+
+        return false;
+    }
 }
