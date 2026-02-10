@@ -2,7 +2,7 @@
 
 namespace Kanban_Board.Domain.IRepository;
 
-public interface IUserRepository
+public interface IUserRepository:IRepositoryBase<ApplicationUser>
 {
     public void RegisterUser(ApplicationUser applicationUser);
 }

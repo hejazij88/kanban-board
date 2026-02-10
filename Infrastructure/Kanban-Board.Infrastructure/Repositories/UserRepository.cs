@@ -4,13 +4,13 @@ using Kanban_Board.Infrastructure.Data;
 
 namespace Kanban_Board.Infrastructure.Repositories;
 
-public class UserRepository:IUserRepository
+public class UserRepository:RepositoryBase<ApplicationUser>,IUserRepository
 {
     private readonly KanbanBoardContext _context;
 
-    public UserRepository(KanbanBoardContext context)
+    public UserRepository(KanbanBoardContext context) : base(context)
     {
-        _context = context;
+
     }
 
     public void RegisterUser(ApplicationUser applicationUser)
