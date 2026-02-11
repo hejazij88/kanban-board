@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Kabnab_Board.Application.Commands.Handlers;
 
-public class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommand>
+public class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommand,Result<bool>>
 {
     private readonly IUserRepository _userRepository;
 
@@ -13,7 +13,7 @@ public class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommand>
         _userRepository = userRepository;
     }
 
-    public async Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser
         {
@@ -22,6 +22,10 @@ public class RegisterUserCommandHandler:IRequestHandler<RegisterUserCommand>
             FullName = request.fullName,
         };
 
-        await _userRepository.RegisterUser(user,request.password);
+        var result = await _userRepository.RegisterUser(user, request.password);
+        if (result== false)
+            return Result<bool>.Failure(new List<string> { "User registration failed" });
+
+        return Result<bool>.Success(result);
     }
 }

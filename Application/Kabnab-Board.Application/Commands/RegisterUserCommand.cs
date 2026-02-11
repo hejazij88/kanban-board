@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Kabnab_Board.Application.Commands;
 
-public record RegisterUserCommand(string email,string password,string fullName):IRequest;
+public record RegisterUserCommand(string email,string password,string fullName):IRequest<Result<bool>>;

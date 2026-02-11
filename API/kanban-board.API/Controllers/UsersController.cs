@@ -19,12 +19,14 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("RegisterUser")]
-    public async Task<IActionResult> RegisterUser([FromBody]RegisterDTO registerDto)
+    public async Task<IActionResult> RegisterUser([FromBody] RegisterDTO registerDto)
     {
 
-            var command = new RegisterUserCommand(registerDto.Email, registerDto.Password, registerDto.Fullname);
-        await _mediator.Send(command);
-        return Ok();
+        var command = new RegisterUserCommand(registerDto.Email, registerDto.Password, registerDto.Fullname);
+        var result = await _mediator.Send(command);
+        if (result.IsSuccess == true) return Ok();
+
+        return BadRequest(result.Errors);
     }
 
 

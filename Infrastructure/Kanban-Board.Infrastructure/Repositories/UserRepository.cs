@@ -16,7 +16,7 @@ public class UserRepository : IUserRepository
         _userManager = userManager;
     }
 
-    public async Task RegisterUser(ApplicationUser applicationUser,string password)
+    public async Task<bool> RegisterUser(ApplicationUser applicationUser,string password)
     {
         var result = await _userManager.CreateAsync(applicationUser, password);
 
@@ -25,7 +25,7 @@ public class UserRepository : IUserRepository
             foreach (var error in result.Errors)
                 Console.WriteLine(error.Description);
         }
-        return;
+        return true;
     }
 
     public async Task<string> LogInUser(ApplicationUser applicationUser)

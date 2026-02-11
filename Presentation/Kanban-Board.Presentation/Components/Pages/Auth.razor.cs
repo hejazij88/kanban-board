@@ -7,8 +7,7 @@ namespace Kanban_Board.Presentation.Components.Pages;
 
 public partial class Auth
 {
-    [Inject] private  UserServices _userServices { get; set; }
-    [Inject] private ISnackbar _snackbar { get; set; }
+    [Inject] private UserServices _userServices { get; set; }
     [Inject] private NavigationManager _navigationManager { get; set; }
     private bool isLoginValid;
     private MudForm loginForm;
@@ -31,14 +30,11 @@ public partial class Auth
         await registerForm.Validate();
         if (isRegisterValid)
         {
-             var result=await _userServices.RegisterUser(registerDTO);
-             if (result == true)
-             {
-                 _snackbar.Add("Register Success", Severity.Success);
-                 _navigationManager.NavigateTo("/");
-             }
-             _snackbar.Add("Register Failed", Severity.Error);
-
+            var result = await _userServices.RegisterUser(registerDTO);
+            if (result == true)
+            {
+                _navigationManager.NavigateTo("/");
+            }
         }
     }
 }
