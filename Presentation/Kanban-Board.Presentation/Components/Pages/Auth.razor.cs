@@ -35,7 +35,7 @@ public partial class Auth
              if (result == true)
              {
                  _snackbar.Add("Register Success", Severity.Success);
-                 _navigationManager.NavigateTo("/Auth");
+                 _navigationManager.NavigateTo("/");
              }
              _snackbar.Add("Register Failed", Severity.Error);
 

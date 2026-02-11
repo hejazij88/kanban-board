@@ -1,15 +1,26 @@
-using System.Text;
+using Kabnab_Board.Application.Commands;
+using Kabnab_Board.Application.Commands.Handlers;
+using Kanban_Board.Domain.IRepository;
 using Kanban_Board.Domain.Models;
 using Kanban_Board.Infrastructure.Data;
+using Kanban_Board.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(
+        typeof(RegisterUserCommandHandler).Assembly);
+});
 
 
 builder.Services.AddDbContext<KanbanBoardContext>(options =>
@@ -36,6 +47,9 @@ builder.Services.AddAuthentication(options => {
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 builder.Services.AddAuthorization();
 

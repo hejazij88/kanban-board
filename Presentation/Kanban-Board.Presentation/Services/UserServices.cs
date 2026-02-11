@@ -14,12 +14,10 @@ public class UserServices
 
     public async Task<bool> RegisterUser(RegisterDTO registerDto)
     {
-        var response = await _httpClient.PostAsJsonAsync("api/User/RegisterUser", registerDto);
+        var response = await _httpClient.PostAsJsonAsync("api/Users/RegisterUser", registerDto);
 
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            var result = await response.Content.ReadFromJsonAsync<bool>();
-
             return true;
         }
 
@@ -28,7 +26,7 @@ public class UserServices
 
     public async Task<bool> LoginUser(LoginDTO logInDto)
     {
-        var response = await _httpClient.PostAsJsonAsync("api/User/LoginUser", logInDto);
+        var response = await _httpClient.PostAsJsonAsync("api/Users/LoginUser", logInDto);
 
         if (response.StatusCode == HttpStatusCode.OK)
         {
