@@ -1,17 +1,24 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Kabnab_Board.Application.DTOs;
 
 public class RegisterDTO
 {
-    [Required]
-    public string UserName { get; set; }
-    [Required]
     [EmailAddress]
+    [Required]
     public string Email { get; set; }
     [Required]
-    [DataType(DataType.Password)]
     public string Password { get; set; }
+    [Required]
+    public string Fullname { get; set; }
 
+}
+
+public class LoginDTO
+{
+    [EmailAddress]
+    [Required]
+    public string Email { get; set; }
+    [Required]
+    public string Password { get; set; }
 }

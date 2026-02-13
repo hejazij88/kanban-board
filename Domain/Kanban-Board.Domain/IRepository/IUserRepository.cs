@@ -4,5 +4,6 @@ namespace Kanban_Board.Domain.IRepository;
 
 public interface IUserRepository
 {
-    public void RegisterUser(ApplicationUser applicationUser);
+    public Task<bool> RegisterUser(ApplicationUser applicationUser,string password);
+    public Task<string> LogInUser(ApplicationUser applicationUser);
 }

@@ -1,20 +1,44 @@
-using System.Text;
+using Kabnab_Board.Application.Commands;
+using Kabnab_Board.Application.Commands.Handlers;
+using Kabnab_Board.Application.Validators.Behaviors;
+using Kanban_Board.Domain.IRepository;
 using Kanban_Board.Domain.Models;
 using Kanban_Board.Infrastructure.Data;
+using Kanban_Board.Infrastructure.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
+using System.Text;
+using FluentValidation;
+using Kabnab_Board.Application.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(
+        typeof(RegisterUserCommandHandler).Assembly);
+});
+
 
 builder.Services.AddDbContext<KanbanBoardContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>()
+    .AddEntityFrameworkStores<KanbanBoardContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidator).Assembly);
+
+builder.Services.AddTransient(
+    typeof(IPipelineBehavior<,>),
+    typeof(ValidationBehavior<,>));
 
 builder.Services.AddAuthentication(options => {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -32,6 +56,9 @@ builder.Services.AddAuthentication(options => {
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 builder.Services.AddAuthorization();
 
