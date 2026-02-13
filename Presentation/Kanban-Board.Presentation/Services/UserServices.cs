@@ -1,5 +1,6 @@
 ﻿using Kabnab_Board.Application.DTOs;
 using System.Net;
+using Kabnab_Board.Application.Commands;
 using MudBlazor;
 
 namespace Kanban_Board.Presentation.Services;
@@ -19,14 +20,14 @@ public class UserServices
     {
         var response = await _httpClient.PostAsJsonAsync("api/Users/RegisterUser", registerDto);
 
-        if (response.StatusCode == HttpStatusCode.OK)
+        if (response.IsSuccessStatusCode)
         {
             _snackbar.Add("Register Is Success", Severity.Success);
             return true;
         }
 
-        var result = await response.Content.ReadFromJsonAsync<List<string>>();
-        foreach (var error in result)
+        var result = await response.Content.ReadFromJsonAsync<Result<bool>>();
+        foreach (var error in result.Errors)
         {
             _snackbar.Add(error, Severity.Error);
         }

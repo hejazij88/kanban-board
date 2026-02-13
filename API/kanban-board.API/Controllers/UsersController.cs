@@ -10,7 +10,7 @@ namespace kanban_board.API.Controllers;
 
 public class UsersController : ControllerBase
 {
-
+        
     private readonly IMediator _mediator;
 
     public UsersController(IMediator mediator)
@@ -21,12 +21,12 @@ public class UsersController : ControllerBase
     [HttpPost("RegisterUser")]
     public async Task<IActionResult> RegisterUser([FromBody] RegisterDTO registerDto)
     {
-
         var command = new RegisterUserCommand(registerDto.Email, registerDto.Password, registerDto.Fullname);
         var result = await _mediator.Send(command);
-        if (result.IsSuccess == true) return Ok();
 
-        return BadRequest(result.Errors);
+        if(result.IsSuccess) return Ok(result);
+
+        return BadRequest(result);
     }
 
 

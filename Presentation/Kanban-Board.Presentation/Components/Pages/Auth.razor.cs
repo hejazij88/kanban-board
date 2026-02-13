@@ -8,6 +8,7 @@ namespace Kanban_Board.Presentation.Components.Pages;
 public partial class Auth
 {
     [Inject] private UserServices _userServices { get; set; }
+    //[Inject] private ISnackbar _snackbar { get; set; }
     [Inject] private NavigationManager _navigationManager { get; set; }
     private bool isLoginValid;
     private MudForm loginForm;
@@ -36,5 +37,6 @@ public partial class Auth
                 _navigationManager.NavigateTo("/");
             }
         }
+        StateHasChanged();
     }
 }
